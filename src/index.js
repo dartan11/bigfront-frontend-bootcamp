@@ -1,13 +1,11 @@
-import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-
 import "./index.css";
-import App from "./components/App";
-import Home from "./components/Home";
-import NewSightingForm from "./components/NewSightingForm";
-import Sighting from "./components/Sighting";
+import App from "./App";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import SightingsList from "./SightingsList.js";
+import IndividualSighting from "./IndividualSighting.js";
+import NewSighting from "./NewSighting.js";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -15,12 +13,14 @@ root.render(
     <Routes>
       {/* Route that provides base app UI */}
       <Route path="/" element={<App />}>
-        {/* Route that renders home content */}
-        <Route index element={<Home />} />
-        {/* Route that renders new sighting form */}
-        <Route path="new" element={<NewSightingForm />} />
+        {/* Route that renders all sightings */}
+        <Route index element={<SightingsList />} />
         {/* Route that renders individual sightings */}
-        <Route path="sightings/:sightingId" element={<Sighting />} />
+        <Route
+          path="sightings/:sightingIndex"
+          element={<IndividualSighting />}
+        />
+        <Route path="/new" element={<NewSighting />} />
         {/* Route that matches all other paths */}
         <Route path="*" element={"Nothing here!"} />
       </Route>
